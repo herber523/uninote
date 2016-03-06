@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'therubyracer'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem "bower-rails", "0.10.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
