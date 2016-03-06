@@ -2,8 +2,8 @@
 
 本專案主要是為了改善選課系統
 
-參考了
-[crosslink](https://www.crosslink.tw)
-[成大選課小幫手](https://ncku-select-course-helper.herokuapp.com/setting)
-[colorgy](https://colorgy.io)
+參考了  
+- crosslink https://www.crosslink.tw  
+- 成大選課小幫手 https://ncku-select-course-helper.herokuapp.com/setting  
+- colorgy https://colorgy.io  
 
