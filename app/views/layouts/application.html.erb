@@ -10,10 +10,10 @@
 
 </head>
 
-<body  scroll="no" class="hold-transition skin-blue-light sidebar-big">
+<body class="hold-transition skin-blue-light sidebar-mini">
 <div class="wrapper">
 <%= render "common/navbar" %>   
-<%= render "common/userside" %>  
+<%= render "common/courseside" %>   
   <div class="content-wrapper">
         <%= yield %>
   </div>
@@ -21,7 +21,9 @@
 <%= render "common/footer" %>   
 
 </div>
-
+<script>
+	$.AdminLTE.tree('.sidebar');
+</script>
 </body>
 </html>
 

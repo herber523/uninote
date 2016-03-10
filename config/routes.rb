@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
    devise_for :users , :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  resources :courses
+  resources :homes
+  resources :groups
+  get '/csv' => 'homes#csv' 
+  root 'starts#index'
+  post '/search' => 'searchs#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

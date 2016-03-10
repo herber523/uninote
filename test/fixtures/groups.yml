@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_1: 1.5
+  num_2: 1.5
+  num_3: 1.5
+  comment: MyString
+
+two:
+  num_1: 1.5
+  num_2: 1.5
+  num_3: 1.5
+  comment: MyString

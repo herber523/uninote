@@ -11,7 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306074057) do
+ActiveRecord::Schema.define(version: 20160310062851) do
+
+  create_table "colleges", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.integer  "department_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.integer  "course_id",     limit: 4
+    t.string   "name",          limit: 255
+    t.string   "credit",        limit: 255
+    t.string   "date",          limit: 255
+    t.string   "teacher",       limit: 255
+    t.string   "num",           limit: 255
+    t.string   "note",          limit: 255
+    t.integer  "department_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "year",          limit: 4
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "college_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.float    "num_1",      limit: 24
+    t.float    "num_2",      limit: 24
+    t.float    "num_3",      limit: 24
+    t.string   "comment",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "course_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+  end
+
+  create_table "lnventories", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "course_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "course_id",  limit: 4
+    t.string   "localtion",  limit: 255
+    t.integer  "time",       limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer  "course_id",    limit: 4
+    t.integer  "recommend_id", limit: 4
+    t.integer  "times",        limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "syllabuses", force: :cascade do |t|
+    t.integer  "course_id",  limit: 4
+    t.binary   "syllabus",   limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

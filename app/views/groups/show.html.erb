@@ -1,0 +1,203 @@
+      <section class="content">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <h3 class="box-title">課程資訊</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="box-group" id="accordion">
+                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                <div class="panel box box-primary">
+                  <div class="box-header with-border">
+                    <h4 class="box-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" class="">
+			<%=@course.name%>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse1" class="panel-collapse collapse in" aria-expanded="true">
+                    <div class="box-body">
+			<%=@course.syllabus.syllabus.force_encoding("UTF-8")%>
+			<br>
+			<a class="pull-right" href="<%=@uri%>">詳細資料</a>
+		    </div>
+                  </div>
+                </div>
+                <div class="panel box box-success">
+                  <div class="box-header with-border">
+                    <h4 class="box-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="collapsed" aria-expanded="false">
+                        時間地點 / 授課老師
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="box-body">
+                    <%=@course.date%>/<%=@course.teacher%>
+		    </div>
+                  </div>
+                </div>
+                <div class="panel box box-danger">
+                  <div class="box-header with-border">
+                    <h4 class="box-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="collapsed" aria-expanded="false">
+                        選課人數狀態
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse2" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="box-body">
+                     	<%=@course.num%>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel box box-warning">
+                  <div class="box-header with-border">
+                    <h4 class="box-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" class="collapsed" aria-expanded="false">
+                        備註
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse4" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="box-body">
+                    <%=@course.note%>
+		    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-md-6">
+              <!-- USERS LIST -->
+              <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">修過這門課的同學</h3>
+                  <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <ul class="users-list clearfix">
+			<%@course.lnventories.each do |lnventory|%>
+			    <li>
+			      <img src="<%=lnventory.user.image%>" alt="User Image">
+			      <a class="users-list-name" href="https://facebook.com/<%=lnventory.user.uid%>"><%=lnventory.user.name%></a>
+			    </li>
+			<%end%>
+                  </ul>
+                  <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                <!-- /.box-footer -->
+              </div>
+              <!--/.box -->
+            </div>
+            <!-- /.col -->
+          </div>
+        <!-- /.row -->
+
+        
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Box Comment -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">評價 / 討論</h3>
+              <!-- /.user-block -->
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <h3><strong><%=@course.teacher%> 老師</strong></h3>
+                      <h3>總評價<%=@group_num%> <input type="hidden" class="rating" data-filled="fa fa-star text-yellow" data-empty="fa fa-star-o text-yellow" data-readonly value="<%=@group_num%>"/></h3>
+                      <div class="clearfix">
+                        <span class="pull-left"><h4>教學方式:  <input type="hidden" class="rating" data-filled="fa fa-star text-yellow" data-empty="fa fa-star-o text-yellow" data-readonly value="<%=@group_num1%>"/></h4></span>
+                      </div>
+                        <div class="clearfix">
+                        <span class="pull-left"><h4>上課內容:  <input type="hidden" class="rating" data-filled="fa fa-star text-yellow" data-empty="fa fa-star-o text-yellow" data-readonly value="<%=@group_num2%>"/></h4></span>
+                      </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer box-comments">
+		<%@groups.each do |group|%>
+		<% if group.user %> 	
+		<div class="box-comment">
+                <!-- User image -->
+		
+                <img class="img-circle img-sm" src="<%=group.user.image%>" alt="User Image">
+
+                <div class="comment-text">
+                      <span class="username">
+                        <%=group.user.name%><small>  --在<%=group.course.name%></small>
+                        <span class="text-muted pull-right"><input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-readonly value="<%=(group.num_1.to_f + group.num_2.to_f) /2 %>"/></span>
+                      </span><!-- /.username -->
+                	<%=group.comment%>
+		</div>
+                <!-- /.comment-text -->
+              </div>
+		
+		<%end%>
+		<%end%>
+              <!-- /.box-comment -->
+            </div>
+            <!-- /.box-footer -->
+            <div class="box-footer">
+
+		<%= form_for @group do |f| %>
+                <input type="hidden" name="course_id" value="<%=@course.id%>"/>
+		<%=image_tag(current_user.image+"?type=square", :class => "img-circle img-sm img-responsive")%>
+                <!-- .img-push is used to add margin to elements next to floating images -->
+                <div class="img-push">
+                  <label>我要給</label>
+                  <div class="form-group">
+                    <label>教學方式：</label> <input type="hidden" name="group[num_1]" id="group[num_1]" class="rating" data-filled="fa fa-star text-yellow"  value=3 data-empty="fa fa-star-o"/>
+                  </div>
+                  <div class="form-group">
+                  <label>上課內容：</label><input type="hidden" name="group[num_2]" id="group[num_2]" class="rating" data-filled="fa fa-star text-yellow"  value=3 data-empty="fa fa-star-o"/>
+                </div>
+                  <div class="form-group">
+                <textarea class="form-control" name="group[comment]" id="group[comment]" rows="3" placeholder="請輸入評論 ..."></textarea>
+                </div>
+                <div class="checkbox pull-left">
+                    <label>
+                      <!--<input type="checkbox">
+                      隱身術
+                    </label>-->
+                  </div>
+              <button type="submit" class="btn btn-info pull-right">發表</button>
+                </div>
+        <%end%>    
+	</div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+      </section>
+
+<!-- jQuery 2.1.4 -->
+<script src="../../dist/js/bootstrap-rating.min.js">
+$('input').rating();
+</script>

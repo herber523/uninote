@@ -1,0 +1,56 @@
+    <section class="content-header">
+      <h1>
+        <%=@department.name%>
+        <small>開課明細</small>
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+	<div class="box">
+	<table class="table table-striped table-hover table-responsive">
+	<thead>
+	<tr>
+		<th class="col-xs-1 col-md-1">代碼</th>
+		<th class="col-xs-4 col-md-2">課程名稱</th>
+		<th class="col-xs-2 col-md-1">學分</th>
+		<th class="col-xs-2 col-md-1">時間/地點</th>
+		<th class="col-xs-2 col-md-1">教師</th>
+		<th class="hidden-xs col-md-3">選課人數</th>
+		<th class="hidden-xs col-md-3">備註</th>
+	</tr>
+	</thead>
+	<tbody>
+		<%@courses.each do |course|%>
+		<tr>
+			<td><%=course.course_id%></td>
+			<td><%=link_to course.name,group_path(course)%></td>
+			<td><%=course.credit%></td>
+			<td><%=course.date%></td>
+			<td><%=course.teacher%></td>
+			<td class="hidden-xs"><%=course.num%></td>
+			<td class="hidden-xs"><%=course.note%></td>
+			
+<% if current_user %>
+			<td>
+				<div id="button">
+				<%= button_to( "加入", {:action => "create" , :controller => "courses"}, :id => "add" ,remote: true ,:class => "btn" ,:method => :post ,params:{course_id:course.id})%>
+
+				<script>
+				 $("#button #add").click(function(){
+					  $(this).button('loading').delay(11).queue(function() {                                $(this).val('成功新增');
+						});     
+				});   
+
+				</script>
+
+				</div>
+			</td>
+<%end%>
+		</tr>
+		<%end%>
+	</tbody>
+	</table>
+	</div>
+    </section>

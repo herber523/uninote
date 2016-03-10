@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: apl_production
-  username: apl
-  password: <%= ENV['APL_DATABASE_PASSWORD'] %>
+  database: apl
