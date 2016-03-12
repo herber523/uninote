@@ -20,6 +20,9 @@ class GroupsController < ApplicationController
     		@group = @course.groups.build(post_params)
     		@group.user_id = current_user.id
     		@group.save
+		if @group.save
+		     redirect_to group_path(@course), notice: "新增評論成功"
+		end
 	end
 private
 def post_params
